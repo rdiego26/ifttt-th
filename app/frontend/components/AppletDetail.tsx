@@ -85,6 +85,8 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
 
   return (
     <div className="applet-detail">
+      <a href="/" className="btn-back-to-list">← Back to Applets</a>
+
       <div className="applet-card">
         <h1 className="applet-name">{applet.name}</h1>
         <p className="applet-description">{applet.description}</p>
