@@ -45,3 +45,80 @@ export interface Applet {
 export interface GetAppletResponse {
   applet: Applet
 }
+
+export const GET_ACTIVITIES = gql`
+  query GetActivities(
+    $appletId: ID!
+    $page: Int
+    $perPage: Int
+    $sinceTime: ISO8601DateTime
+    $beforeTime: ISO8601DateTime
+    $status: String
+    $search: String
+  ) {
+    activities(
+      appletId: $appletId
+      page: $page
+      perPage: $perPage
+      sinceTime: $sinceTime
+      beforeTime: $beforeTime
+      status: $status
+      search: $search
+    ) {
+      activities {
+        id
+        appletId
+        status
+        ranAt
+        triggerData
+        actionData
+        errorMessage
+      }
+      totalCount
+      page
+      perPage
+      totalPages
+    }
+  }
+`
+
+export interface Activity {
+  id: string
+  appletId: string
+  status: "success" | "failed" | "skipped"
+  ranAt: string
+  triggerData: {
+    service: string
+    event: string
+    details?: Record<string, any>
+  }
+  actionData: {
+    service: string
+    result: string
+    completed?: boolean
+  }
+  errorMessage?: string | null
+}
+
+export interface ActivityConnection {
+  activities: Activity[]
+  totalCount: number
+  page: number
+  perPage: number
+  totalPages: number
+}
+
+export interface GetActivitiesResponse {
+  activities: ActivityConnection
+}
+
+export interface GetActivitiesVariables {
+  appletId: string
+  page?: number
+  perPage?: number
+  sinceTime?: string
+  beforeTime?: string
+  status?: "success" | "failed" | "skipped"
+  search?: string
+}
+

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { fetchApplet, AppletNotFoundError } from "../graphql/client"
 import { GET_APPLET, GetAppletResponse, Applet } from "../graphql/queries"
+import ActivityFeed from "@/components/ActivityFeed.tsx";
 
 interface AppletDetailProps {
   appletId: string
@@ -108,9 +109,7 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
         </div>
       </div>
 
-      <div className="activity-feed-placeholder">
-        <h2>Activity Feed</h2>
-      </div>
+      <ActivityFeed appletId={appletId} />
     </div>
   )
 }

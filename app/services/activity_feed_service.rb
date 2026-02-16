@@ -198,7 +198,7 @@ class ActivityFeedService
     activities = []
 
     # Generate a deterministic random seed based on applet_id
-    rng = Random.new(applet_id)
+    rng = Random.new(applet_id.to_i)
 
     # Generate activities at varying intervals (simulating realistic trigger patterns)
     current_time = before_time
@@ -398,7 +398,7 @@ class ActivityFeedService
   def generate_deterministic_uuid(applet_id, timestamp)
     # Generate a deterministic UUID based on applet_id and timestamp
     require "digest"
-    hash = Digest::SHA256.hexdigest("#{applet_id}-#{timestamp.to_i}")
+    hash = Digest::SHA256.hexdigest("#{applet_id.to_i}-#{timestamp.to_i}")
     # Format as UUID v4
     "#{hash[0..7]}-#{hash[8..11]}-#{hash[12..15]}-#{hash[16..19]}-#{hash[20..31]}"
   end
