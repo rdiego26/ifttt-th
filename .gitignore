@@ -70,3 +70,9 @@ yarn-debug.log*
 
 ## Jetbrains IDEs
 .idea/
+
+## Ignore test examples
+spec/examples.txt
+
+## Ignore Mac system files
+.DS_Store
