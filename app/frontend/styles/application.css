@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.applet-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.applet-detail--loading,
+.applet-detail--error,
+.applet-detail--not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.applet-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.applet-name {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.applet-description {
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+
+.applet-services {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.service-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+}
+
+.service-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.service-arrow {
+  font-size: 1.25rem;
+  color: #ccc;
+}
+
+.applet-status {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.activity-feed-placeholder {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.activity-feed-placeholder h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.activity-feed-placeholder p {
+  color: #888;
+  margin: 0;
+}

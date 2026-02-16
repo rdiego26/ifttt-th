@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IFTTT Take-Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <% if Rails.env.local? %>
+      <%= vite_client_tag %>
+    <% else %>
+      <%= vite_stylesheet_tag "application" %>
+    <% end %>
+    <%= vite_react_refresh_tag %>
+    <%= vite_javascript_tag "application" %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

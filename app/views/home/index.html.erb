@@ -1,0 +1,89 @@
+<div class="home">
+  <div class="hero">
+    <h1>IFTTT Take-Home Exercise</h1>
+    <p>Build an applet detail page with activity feed</p>
+  </div>
+
+  <div class="applet-list">
+    <h2>Sample Applets</h2>
+    <% @applets.each do |applet| %>
+      <a href="<%= applet_path(applet) %>" class="applet-link">
+        <div class="applet-preview">
+          <strong><%= applet.name %></strong>
+          <span class="services">
+            <%= applet.trigger_service.name %> → <%= applet.action_service.name %>
+          </span>
+        </div>
+      </a>
+    <% end %>
+  </div>
+
+  <div class="links">
+    <h2>Quick Links</h2>
+    <a href="/graphiql">GraphiQL Playground</a>
+  </div>
+</div>
+
+<style>
+  .home {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    margin: 0 0 0.5rem;
+    color: #222;
+  }
+  .hero p {
+    color: #666;
+    margin: 0;
+  }
+  .applet-list, .links {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .applet-list h2, .links h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .applet-link {
+    display: block;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    background: #f5f5f5;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .applet-link:hover {
+    background: #eee;
+  }
+  .applet-preview strong {
+    display: block;
+    color: #222;
+  }
+  .applet-preview .services {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  .links ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .links li {
+    margin: 0.5rem 0;
+  }
+  .links a {
+    color: #0066cc;
+  }
+</style>

@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+rm -f /app/tmp/pids/server.pid
+
+until pg_isready -h db -U postgres; do
+  echo "Waiting for database..."
+  sleep 2
+done
+
+if ! bundle check > /dev/null 2>&1; then
+  echo "Installing Ruby dependencies..."
+  bundle install
+fi
+
+if [ ! -d "node_modules" ] || [ ! -f "node_modules/.package-lock.json" ]; then
+  echo "Installing Node dependencies..."
+  npm install
+fi
+
+if [ "$RAILS_ENV" != "production" ]; then
+  echo "Running database setup..."
+  bin/rails db:prepare
+  bin/rails db:seed 2>/dev/null || true
+fi
+
+echo "Starting Vite dev server..."
+bin/vite dev &
+
+exec "$@"
