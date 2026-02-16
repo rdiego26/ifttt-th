@@ -183,15 +183,32 @@ body {
   font-weight: 600;
   padding: 0.5rem 1rem;
   border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.applet-status--enabled {
   background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
   color: white;
   box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
 }
 
+.applet-status--disabled {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(127, 140, 141, 0.3);
+}
+
 .applet-status::before {
   content: '●';
   font-size: 0.6rem;
+}
+
+.applet-status--enabled::before {
   animation: blink 2s ease-in-out infinite;
+}
+
+.applet-status--disabled::before {
+  opacity: 0.5;
 }
 
 @keyframes blink {

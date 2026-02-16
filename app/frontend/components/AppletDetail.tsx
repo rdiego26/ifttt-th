@@ -103,8 +103,8 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
           </div>
         </div>
 
-        <div className="applet-status">
-          Status: {applet.enabled ? "Enabled" : "Disabled"}
+        <div className={`applet-status ${applet.enabled ? 'applet-status--enabled' : 'applet-status--disabled'}`}>
+          {applet.enabled ? "Enabled" : "Disabled"}
         </div>
       </div>
 
