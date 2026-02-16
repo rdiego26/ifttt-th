@@ -57,6 +57,10 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
     )
   }
 
+  if (!applet) {
+    return null
+  }
+
   return (
     <div className="applet-detail">
       <a href="/" className="btn-back-to-list">← Back to Applets</a>
@@ -66,14 +70,34 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
         <p className="applet-description">{applet.description}</p>
 
         <div className="applet-services">
-          <div className="service trigger-service">
+          <div className="service trigger-service" style={{ borderLeftColor: applet.triggerService.brandColor || '#667eea' }}>
             <span className="service-label">If</span>
-            <span className="service-name">{applet.triggerService.name}</span>
+            <div className="service-info">
+              {applet.triggerService.iconUrl && (
+                <img
+                  src={applet.triggerService.iconUrl}
+                  alt={`${applet.triggerService.name} icon`}
+                  className="service-icon"
+                  style={{ backgroundColor: applet.triggerService.brandColor || '#667eea' }}
+                />
+              )}
+              <span className="service-name">{applet.triggerService.name}</span>
+            </div>
           </div>
           <div className="service-arrow">→</div>
-          <div className="service action-service">
+          <div className="service action-service" style={{ borderLeftColor: applet.actionService.brandColor || '#764ba2' }}>
             <span className="service-label">Then</span>
-            <span className="service-name">{applet.actionService.name}</span>
+            <div className="service-info">
+              {applet.actionService.iconUrl && (
+                <img
+                  src={applet.actionService.iconUrl}
+                  alt={`${applet.actionService.name} icon`}
+                  className="service-icon"
+                  style={{ backgroundColor: applet.actionService.brandColor || '#764ba2' }}
+                />
+              )}
+              <span className="service-name">{applet.actionService.name}</span>
+            </div>
           </div>
         </div>
 
