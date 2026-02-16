@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { client } from "../graphql/client"
+import { fetchApplet, AppletNotFoundError } from "../graphql/client"
 import { GET_APPLET, GetAppletResponse, Applet } from "../graphql/queries"
 
 interface AppletDetailProps {
@@ -24,21 +24,29 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
   const [applet, setApplet] = useState<Applet | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [isNotFound, setIsNotFound] = useState(false)
 
   useEffect(() => {
-    const fetchApplet = async () => {
+    const fetchAppletData = async () => {
       try {
         setLoading(true)
-        const data = await client.request<GetAppletResponse>(GET_APPLET, { id: appletId })
+        setError(null)
+        setIsNotFound(false)
+        const data = await fetchApplet<GetAppletResponse>(GET_APPLET, { id: appletId })
         setApplet(data.applet)
       } catch (err) {
-        setError(err instanceof Error ? err : new Error("Failed to fetch applet"))
+        if (err instanceof AppletNotFoundError) {
+          setIsNotFound(true)
+          setError(err)
+        } else {
+          setError(err instanceof Error ? err : new Error("Failed to fetch applet"))
+        }
       } finally {
         setLoading(false)
       }
     }
 
-    fetchApplet()
+    fetchAppletData()
   }, [appletId])
 
   if (loading) {
@@ -49,18 +57,28 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
     )
   }
 
-  if (error) {
+  if (isNotFound) {
     return (
-      <div className="applet-detail applet-detail--error">
-        <p>Error loading applet: {error.message}</p>
+      <div className="applet-detail applet-detail--not-found">
+        <div className="error-box">
+          <h2>Applet Not Found</h2>
+          <p>The applet you're looking for doesn't exist or may have been removed.</p>
+          <a href="/" className="btn-back">← Back to Home</a>
+        </div>
       </div>
     )
   }
 
-  if (!applet) {
+  if (error) {
     return (
-      <div className="applet-detail applet-detail--not-found">
-        <p>Applet not found</p>
+      <div className="applet-detail applet-detail--error">
+        <div className="error-box">
+          <h2>Error Loading Applet</h2>
+          <p>{error.message}</p>
+          <button onClick={() => window.location.reload()} className="btn-retry">
+            Try Again
+          </button>
+        </div>
       </div>
     )
   }

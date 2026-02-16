@@ -102,3 +102,58 @@ body {
   color: #888;
   margin: 0;
 }
+
+/* Error States */
+.error-box {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.error-box h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: #e74c3c;
+}
+
+.applet-detail--not-found .error-box h2 {
+  color: #f39c12;
+}
+
+.error-box p {
+  color: #666;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.btn-back,
+.btn-retry {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-back:hover,
+.btn-retry:hover {
+  background-color: #2980b9;
+}
+
+.btn-retry {
+  background-color: #27ae60;
+}
+
+.btn-retry:hover {
+  background-color: #229954;
+}
+
