@@ -173,17 +173,16 @@ class MutationType < GraphQL::Schema::Object
   field :_dummy, Boolean, null: false, description: "A dummy field to satisfy GraphQL schema requirements" do
     argument :value, Boolean, required: true
   end
-  # Candidates can add mutations here
-  # Example:
-  # field :toggle_applet, AppletType do
-  #   argument :id, ID, required: true
-  # end
-  #
-  # def toggle_applet(id:)
-  #   applet = Applet.find(id)
-  #   applet.update!(enabled: !applet.enabled)
-  #   applet
-  # end
+
+  field :toggle_applet, AppletType, null: false, description: "Toggle an applet's enabled status" do
+    argument :id, ID, required: true
+  end
+
+  def toggle_applet(id:)
+    applet = Applet.includes(:trigger_service, :action_service).find(id)
+    applet.update!(enabled: !applet.enabled)
+    applet
+  end
 end
 
 # Schema

@@ -122,3 +122,68 @@ export interface GetActivitiesVariables {
   search?: string
 }
 
+export const GET_APPLETS = gql`
+  query GetApplets($enabled: Boolean) {
+    applets(enabled: $enabled) {
+      id
+      name
+      description
+      enabled
+      triggerService {
+        id
+        name
+        slug
+        iconUrl
+        brandColor
+      }
+      actionService {
+        id
+        name
+        slug
+        iconUrl
+        brandColor
+      }
+    }
+  }
+`
+
+export interface GetAppletsResponse {
+  applets: Applet[]
+}
+
+export interface GetAppletsVariables {
+  enabled?: boolean
+}
+
+export const TOGGLE_APPLET = gql`
+  mutation ToggleApplet($id: ID!) {
+    toggleApplet(id: $id) {
+      id
+      name
+      description
+      enabled
+      triggerService {
+        id
+        name
+        slug
+        iconUrl
+        brandColor
+      }
+      actionService {
+        id
+        name
+        slug
+        iconUrl
+        brandColor
+      }
+    }
+  }
+`
+
+export interface ToggleAppletResponse {
+  toggleApplet: Applet
+}
+
+export interface ToggleAppletVariables {
+  id: string
+}

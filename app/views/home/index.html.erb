@@ -6,16 +6,7 @@
 
   <div class="applet-list">
     <h2>Sample Applets</h2>
-    <% @applets.each do |applet| %>
-      <a href="<%= applet_path(applet) %>" class="applet-link">
-        <div class="applet-preview">
-          <strong><%= applet.name %></strong>
-          <span class="services">
-            <%= applet.trigger_service.name %> → <%= applet.action_service.name %>
-          </span>
-        </div>
-      </a>
-    <% end %>
+    <div id="applet-list-root" data-applets="<%= @applets_json.gsub('"', '&quot;').html_safe %>"></div>
   </div>
 
   <div class="links">

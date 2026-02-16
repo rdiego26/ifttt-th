@@ -831,3 +831,202 @@ html {
   }
 }
 
+/* Applet List Styles */
+.applet-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.applet-item-wrapper {
+  position: relative;
+}
+
+.applet-link {
+  display: block;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #f6f8fb 0%, #f1f4f9 100%);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.applet-link:hover {
+  background: linear-gradient(135deg, #eef1f7 0%, #e7ebf5 100%);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.applet-preview {
+  width: 100%;
+}
+
+.applet-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.applet-preview strong {
+  display: block;
+  color: #222;
+  font-size: 1.05rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.applet-preview .services {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.applet-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.applet-toggle {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  background: #ccc;
+}
+
+.applet-toggle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.applet-toggle--enabled {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.applet-toggle--disabled {
+  background: #ccc;
+}
+
+.applet-toggle--loading {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.applet-toggle:disabled {
+  cursor: not-allowed;
+}
+
+.toggle-slider {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  left: 4px;
+}
+
+.applet-toggle--enabled .toggle-slider {
+  transform: translateX(28px);
+}
+
+.toggle-label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.applet-toggle--enabled .toggle-label {
+  left: 8px;
+}
+
+.applet-toggle--disabled .toggle-label {
+  right: 8px;
+}
+
+.toggle-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.applet-error {
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  color: #c00;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-icon {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments for applet list */
+@media (max-width: 768px) {
+  .applet-preview-header {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .applet-toggle {
+    width: 48px;
+    height: 24px;
+  }
+
+  .toggle-slider {
+    width: 18px;
+    height: 18px;
+  }
+
+  .applet-toggle--enabled .toggle-slider {
+    transform: translateX(24px);
+  }
+
+  .toggle-label {
+    font-size: 9px;
+  }
+}
+
