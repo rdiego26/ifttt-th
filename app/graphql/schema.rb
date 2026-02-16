@@ -37,7 +37,7 @@ class QueryType < GraphQL::Schema::Object
   end
 
   def applet(id:)
-    Applet.find(id)
+    Applet.includes(:trigger_service, :action_service).find(id)
   end
 
   field :applets, [AppletType], "List all applets" do
@@ -45,7 +45,7 @@ class QueryType < GraphQL::Schema::Object
   end
 
   def applets(enabled: nil)
-    scope = Applet.all
+    scope = Applet.includes(:trigger_service, :action_service)
     scope = scope.where(enabled: enabled) if enabled.present?
     scope
   end
