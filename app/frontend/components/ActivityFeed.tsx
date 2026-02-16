@@ -50,7 +50,14 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({ appletId }) => {
   }
 
   useEffect(() => {
-    fetchActivities(1)
+    // Only search if searchTerm is empty or has at least 3 characters
+    if (searchTerm === "" || searchTerm.length >= 3) {
+      const timer = setTimeout(() => {
+        fetchActivities(1)
+      }, 500) // Debounce for 500ms
+
+      return () => clearTimeout(timer)
+    }
   }, [appletId, searchTerm, statusFilter])
 
   const handleSearch = (e: React.FormEvent) => {
@@ -132,16 +139,21 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({ appletId }) => {
         <form onSubmit={handleSearch} className="activity-feed__search">
           <input
             type="text"
-            placeholder="Search activities..."
+            placeholder="Search activities... (min 3 characters)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            disabled={loading}
             className="search-input"
           />
+          {searchTerm.length > 0 && searchTerm.length < 3 && (
+            <span className="search-hint">Type at least 3 characters to search</span>
+          )}
         </form>
 
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as any)}
+          disabled={loading}
           className="status-filter"
         >
           <option value="">All statuses</option>
