@@ -149,7 +149,7 @@ docker compose exec app bin/rspec
 docker compose exec app bin/rspec spec/services/activity_feed_service_spec.rb
 
 # Run frontend tests (if you add any)
-npm run test:coverage
+docker compose exec app npm run test:coverage
 ```
 
 ## Deliverable
