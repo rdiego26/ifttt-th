@@ -3,7 +3,10 @@
 <head>
   <title>Applet Not Found</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= vite_stylesheet_tag "not_found" %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= vite_client_tag %>
+  <%= vite_javascript_tag "not_found" %>
 </head>
 <body class="not-found-page">
   <div class="error-container">
