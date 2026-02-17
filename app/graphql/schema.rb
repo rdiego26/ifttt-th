@@ -122,9 +122,9 @@ class QueryType < GraphQL::Schema::Object
   end
 
   field :activities, ActivityConnectionType,
-        "Get activities for an applet with pagination and filters",
-        null: false,
-        connection: false do
+    "Get activities for an applet with pagination and filters",
+    null: false,
+    connection: false do
     argument :applet_id, ID, required: true, description: "ID of the applet"
     argument :page, Integer, required: false, default_value: 1, description: "Page number (1-based)"
     argument :per_page, Integer, required: false, default_value: 20, description: "Number of items per page"

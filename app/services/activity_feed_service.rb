@@ -150,7 +150,7 @@ class ActivityFeedService
   # @return [Array<Activity>] Array of Activity objects
   def fetch(page: 1, per_page: DEFAULT_PER_PAGE, since: nil, before: nil, search: nil, status: nil)
     page = [page.to_i, 1].max
-    per_page = [[per_page.to_i, MAX_PER_PAGE].min, 1].max
+    per_page = per_page.to_i.clamp(1, MAX_PER_PAGE)
 
     # Generate a consistent set of activities based on applet_id and time window
     activities = generate_activities(since: since, before: before)
@@ -229,7 +229,7 @@ class ActivityFeedService
       ran_at: timestamp,
       trigger_data: generate_trigger_data(rng),
       action_data: generate_action_data(rng, status),
-      error_message: status == :failed ? ERROR_MESSAGES.sample(random: rng) : nil
+      error_message: (status == :failed) ? ERROR_MESSAGES.sample(random: rng) : nil
     )
   end
 
@@ -253,7 +253,7 @@ class ActivityFeedService
 
     {
       service: action_service.name,
-      result: status == :skipped ? "Skipped - conditions not met" : action_text,
+      result: (status == :skipped) ? "Skipped - conditions not met" : action_text,
       completed: status == :success
     }
   end
@@ -261,21 +261,21 @@ class ActivityFeedService
   def generate_trigger_details(service_slug, rng)
     case service_slug
     when "instagram"
-      { photo_id: rng.rand(1000000..9999999).to_s, caption: generate_caption(rng) }
+      {photo_id: rng.rand(1000000..9999999).to_s, caption: generate_caption(rng)}
     when "feed"
-      { title: generate_feed_title(rng), url: "https://example.com/article-#{rng.rand(1..1000)}" }
+      {title: generate_feed_title(rng), url: "https://example.com/article-#{rng.rand(1..1000)}"}
     when "gmail"
-      { from: generate_email(rng), subject: generate_email_subject(rng) }
+      {from: generate_email(rng), subject: generate_email_subject(rng)}
     when "wordpress"
-      { post_title: generate_blog_title(rng), url: "https://blog.example.com/#{rng.rand(1..1000)}" }
+      {post_title: generate_blog_title(rng), url: "https://blog.example.com/#{rng.rand(1..1000)}"}
     when "twitter"
-      { tweet_text: generate_tweet(rng), username: generate_username(rng) }
+      {tweet_text: generate_tweet(rng), username: generate_username(rng)}
     when "spotify"
-      { track: generate_track_name(rng), artist: generate_artist_name(rng) }
+      {track: generate_track_name(rng), artist: generate_artist_name(rng)}
     when "ios_photos"
-      { photo_id: "IMG_#{rng.rand(1000..9999)}.jpg", taken_at: Time.current.iso8601 }
+      {photo_id: "IMG_#{rng.rand(1000..9999)}.jpg", taken_at: Time.current.iso8601}
     else
-      { data: "Trigger data" }
+      {data: "Trigger data"}
     end
   end
 
@@ -445,4 +445,3 @@ class ActivityFeedService
     end
   end
 end
-

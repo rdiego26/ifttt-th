@@ -1,0 +1,22 @@
+# Standard Ruby Style Guide Configuration
+# https://github.com/standardrb/standard
+
+# Ruby version target
+ruby_version: 4.0
+
+# Files and directories to ignore
+ignore:
+  - 'node_modules/**/*'
+  - 'vendor/**/*'
+  - 'tmp/**/*'
+  - 'db/schema.rb'
+  - 'bin/**/*'
+  - 'log/**/*'
+  - 'public/**/*'
+  - 'storage/**/*'
+  - 'coverage/**/*'
+  - 'db/**/*'
+
+# Parallel execution for faster linting
+parallel: true
+

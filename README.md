@@ -150,6 +150,28 @@ docker compose exec app bin/rspec spec/services/activity_feed_service_spec.rb
 
 # Run frontend tests (if you add any)
 docker compose exec app npm run test:coverage
+
+# Run Standard Ruby linter
+docker compose exec app bundle exec standardrb
+
+# Auto-fix Standard issues
+docker compose exec app bundle exec standardrb --fix
+```
+
+## Code Style
+
+This project uses [Standard Ruby](https://github.com/standardrb/standard) for Ruby code style and linting.
+
+```bash
+# Check code style
+docker compose exec app bundle exec standardrb
+
+# Auto-fix issues
+docker compose exec app bundle exec standardrb --fix
+
+# Via rake
+docker compose exec app bundle exec rake standard
+docker compose exec app bundle exec rake standard:fix
 ```
 
 ## Deliverable

@@ -76,3 +76,7 @@ spec/examples.txt
 
 ## Ignore Mac system files
 .DS_Store
+
+## Standard Ruby todo file
+.standard_todo.yml
+

@@ -19,9 +19,9 @@ RSpec.describe ActivityFeedService do
   end
   let(:applet) do
     create(:applet,
-           name: "Save Instagram photos to Dropbox",
-           trigger_service: trigger_service,
-           action_service: action_service)
+      name: "Save Instagram photos to Dropbox",
+      trigger_service: trigger_service,
+      action_service: action_service)
   end
   let(:service) { described_class.new(applet_id: applet.id) }
 
@@ -330,8 +330,8 @@ RSpec.describe ActivityFeedService do
 
     it "generates different activities for different applets" do
       another_applet = create(:applet,
-                              trigger_service: trigger_service,
-                              action_service: action_service)
+        trigger_service: trigger_service,
+        action_service: action_service)
       another_service = described_class.new(applet_id: another_applet.id)
 
       activities1 = service.fetch(per_page: 10)
