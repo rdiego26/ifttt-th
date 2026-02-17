@@ -219,3 +219,4 @@ Given additional time, the following improvements would be prioritized:
 - **Event-Driven Cache Invalidation:** Control cache invalidation using event-driven architecture to automatically invalidate cached data when applet modifications or additions occur
 - **Eventual Consistency for Activity Feed:** Implement eventual consistency pattern for the feed service with a message queue that will be consumed asynchronously and data persisted to the database
 - **Enhanced Search UX:** Improve Activity Feed search experience by adding visual feedback during the debounce period (e.g., loading spinner) to provide better user feedback while the search is being processed
+- **E2E Testing:** Implement end-to-end testing with tools like Capybara/Selenium, Playwright, or Cypress to validate full user workflows and ensure integration between frontend and backend components
