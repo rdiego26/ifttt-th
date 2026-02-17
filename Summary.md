@@ -183,7 +183,7 @@ Current coverage metrics demonstrate thorough testing of all frontend components
 
 ## Additional Features Implemented
 
-Beyond the core requirements:
+Beyond the core requirements, I evaluated the user experience from a user's perspective and drew inspiration from the IFTTT website's interface patterns to inform my design decisions:
 
 1. **Toggle Applet Functionality**
    - Full GraphQL mutation implementation
