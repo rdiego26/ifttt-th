@@ -199,12 +199,26 @@ describe('AppletDetail', () => {
       expect(backLink).toHaveAttribute('href', '/')
     })
 
-    it('should render ActivityFeed component with correct appletId', () => {
+    it('should render ActivityFeed component with correct appletId when enabled', () => {
       render(<AppletDetail appletId="1" />)
 
       const activityFeed = screen.getByTestId('activity-feed')
       expect(activityFeed).toBeInTheDocument()
       expect(activityFeed).toHaveTextContent('Activity Feed for 1')
+    })
+
+    it('should NOT render ActivityFeed component when applet is disabled', () => {
+      mockUseApplet.mockReturnValue({
+        applet: { ...mockApplet, enabled: false },
+        loading: false,
+        error: null,
+        isNotFound: false,
+      })
+
+      render(<AppletDetail appletId="1" />)
+
+      const activityFeed = screen.queryByTestId('activity-feed')
+      expect(activityFeed).not.toBeInTheDocument()
     })
 
     it('should display service arrow between trigger and action', () => {

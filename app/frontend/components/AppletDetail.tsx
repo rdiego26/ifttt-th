@@ -106,7 +106,7 @@ const AppletDetail: React.FC<AppletDetailProps> = ({ appletId }) => {
         </div>
       </div>
 
-      <ActivityFeed appletId={appletId} />
+      {applet.enabled && <ActivityFeed appletId={appletId} />}
     </div>
   )
 }
